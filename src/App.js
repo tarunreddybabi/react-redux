@@ -1,22 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { buyTicket } from './redux/actions';
+import { profileDetails } from './redux/profile/action';
 
 function App() {
+
+  // const { totalTickets, filledTickets, unfilledTickets, blockedTickets } = useSelector((state) => state);
+
+  const ReduxStore=useSelector((state)=>state)
+  console.log(ReduxStore);
+
+  const dispatch = useDispatch();
+  // const buyTicketFunction = () => {
+  //   dispatch(buyTicket(1));
+  // }
+
+  const fillDetails=()=>{
+    dispatch(profileDetails({
+      name:"Tarun",
+      salary:20000
+    }))
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* <h5> Total Tickets : {totalTickets} </h5>
+        <h5> Filled Tickets : {filledTickets}</h5>
+        <h5> Unfilled Tickets : {unfilledTickets} </h5>
+        <h5> Blocked Tickets : {blockedTickets}</h5>
+        <button onClick={buyTicketFunction}>Buy Ticket</button> */}
+        <button onClick={fillDetails} >Fill redux store</button>
+        <h2>Profile: {ReduxStore.profile.name}</h2>
+
       </header>
     </div>
   );
